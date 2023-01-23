@@ -14,6 +14,8 @@
 		C0487539297DA6A100B3B653 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0487537297DA6A100B3B653 /* LaunchScreen.storyboard */; };
 		C0487548297DB27800B3B653 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0487547297DB27800B3B653 /* CollectionViewCell.swift */; };
 		C048754B297DB2D000B3B653 /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048754A297DB2D000B3B653 /* NSObject+Ext.swift */; };
+		C048754F297E8E5100B3B653 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048754E297E8E5100B3B653 /* TableViewCell.swift */; };
+		C0487551297EA12C00B3B653 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0487550297EA12C00B3B653 /* DataBase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		C048753A297DA6A100B3B653 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0487547297DB27800B3B653 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		C048754A297DB2D000B3B653 /* NSObject+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Ext.swift"; sourceTree = "<group>"; };
+		C048754E297E8E5100B3B653 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		C0487550297EA12C00B3B653 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 			children = (
 				C0487546297DB25D00B3B653 /* Cell */,
 				C0487530297DA6A000B3B653 /* MainViewController.swift */,
+				C0487550297EA12C00B3B653 /* DataBase.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				C0487547297DB27800B3B653 /* CollectionViewCell.swift */,
+				C048754E297E8E5100B3B653 /* TableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -269,9 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C048754F297E8E5100B3B653 /* TableViewCell.swift in Sources */,
 				C0487531297DA6A000B3B653 /* MainViewController.swift in Sources */,
 				C048754B297DB2D000B3B653 /* NSObject+Ext.swift in Sources */,
 				C048752D297DA6A000B3B653 /* AppDelegate.swift in Sources */,
+				C0487551297EA12C00B3B653 /* DataBase.swift in Sources */,
 				C0487548297DB27800B3B653 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

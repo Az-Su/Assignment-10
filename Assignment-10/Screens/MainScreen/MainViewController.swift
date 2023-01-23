@@ -15,28 +15,35 @@ final class MainViewController: UIViewController {
         layout.itemSize = CGSize(width: 80, height: 80)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemCyan
+        collectionView.layer.cornerRadius = 12
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.typeName)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = false
         return collectionView
     }()
     
-    private let myLabel: UILabel = {
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.typeName)
+        tableView.allowsSelection = false
+        tableView.backgroundColor = .systemYellow
+        tableView.separatorStyle = .none
+        tableView.layer.cornerRadius = 12
+        tableView.showsVerticalScrollIndicator = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    private let label: UILabel = {
         let label = UILabel()
         label.text = "WORK!"
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let images = ["china-great-wall",
-                   "egypt-pyramids-giza",
-                   "greece-athens-acropolis-moon",
-                   "india-taj-mahal",
-                   "italy-rome-colosseum",
-                   "new-york-statue-of-liberty",
-                   "peru-machu-picchu-overview",
-                   "eiffel-tower-flowers-spring"]
+    private let listOf = DataBase()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +53,9 @@ final class MainViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 }
 
@@ -55,16 +65,27 @@ extension MainViewController {
     
     private func setupViews() {
         view.addSubview(collectionView)
-        view.addSubview(myLabel)
+        view.addSubview(tableView)
+        view.addSubview(label)
     }
     
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).multipliedBy(0.33)
+            make.leading.trailing.top.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(tableView.snp.top).inset(-10)
+            make.height.equalTo(200)
         }
-        myLabel.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom)
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).inset(10)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(label.snp.top).inset(-10)
+            make.height.equalTo(200)
+
+        }
+
+        label.snp.makeConstraints { make in
+            make.top.equalTo(tableView.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -92,7 +113,29 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        cell.setImage(name: images[Int.random(in: 0..<images.count)])
+        cell.setImage(name: listOf.images[Int.random(in: 0..<listOf.images.count)])
     }
 }
 
+
+//MARK: - TableViewDataSource methods
+
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.typeName, for: indexPath) as! TableViewCell
+        cell.backgroundColor = .clear
+        return cell
+    }
+}
+
+//MARK: - TableViewDelegate methods
+
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+}
